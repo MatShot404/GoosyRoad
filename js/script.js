@@ -2,6 +2,7 @@ const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 var textpos = 1
 var playerpos = 0
 var playercase = "case" + playerpos
+var lastcase = playerpos - 1
 
 initialize();
 
@@ -25,7 +26,8 @@ function butevent() {
 
 function playermove() {
     ReactDOM.render(<img src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case" + playerpos));
-    ReactDOM.render(<h1 class="casecontent"> 1 </h1>, document.getElementById("case" + playerpos - 1));
+    //ReactDOM.render(<h1 class="casecontent"> 1 </h1>, document.getElementById("case" + lastcase));
+    console.log(lastcase);
 }
 
 function reset() {
@@ -44,7 +46,7 @@ function openquestion() {
             break;
         
         default:
-            alert("Dumbass")
+            alert("Wrong")
             break;
     }
 }

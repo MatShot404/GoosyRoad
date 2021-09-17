@@ -96,4 +96,5 @@ main {
   .imgOie{
     position: relative;
     max-height: 70vh;
+    width: 100%;
   }

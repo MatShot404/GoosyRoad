@@ -92,4 +92,8 @@ main {
     border: 1px solid #999;
     font-size: 20px;
   }
-  
+
+  .imgOie{
+    position: relative;
+    max-height: 70vh;
+  }

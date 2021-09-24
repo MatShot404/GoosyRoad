@@ -29,8 +29,14 @@ function playermove() {
     ReactDOM.render(<img className="Oie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case" + playerpos));
     lastcase += 1
     console.log(lastcase);
+    
+    //Répond juste :
     ReactDOM.render(<h1 className="casecontent"> DONE ! </h1>, document.getElementById('case' + lastcase))
-    document.getElementById('case' + lastcase).style.backgroundColor = "Green";
+    //document.getElementById('case' + lastcase).style.backgroundColor = "Green";
+    
+    // Répond faux :
+    //ReactDOM.render(<h1 className="casecontent"> Wrong ! </h1>, document.getElementById('case' + lastcase))
+    //document.getElementById('case' + lastcase).style.backgroundColor = "Red";
 }
 
 function playermovetransition() {
@@ -40,6 +46,10 @@ function playermovetransition() {
 
 
 
+
+function settings() {
+    alert("Options");
+}
 
 function reset() {
     location.reload();

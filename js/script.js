@@ -1,74 +1,91 @@
-const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-var textpos = 1
-var playerpos = 1
-var playercase = "case" + playerpos
-var lastcase = playerpos - 1
+const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+var textpos = 1;
+var playerpos = 1;
+var playercase = "case" + playerpos;
+var lastcase = playerpos - 1;
 
 initialize();
 
 function initialize() {
-    cases.forEach(element => {
-        ReactDOM.render(<h1 className="casecontent"> {element} </h1>, document.getElementById("case" + textpos));
-        textpos += 1
-        ReactDOM.render(<img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case1"));
-    });
+  cases.forEach((element) => {
+    ReactDOM.render(
+      <h1 className="casecontent"> {element} </h1>,
+      document.getElementById("case" + textpos)
+    );
+    textpos += 1;
+    ReactDOM.render(
+      <img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie"></img>,
+      document.getElementById("case1")
+    );
+  });
 }
 
-// const case1 = <h1 class="casecontent"> 1 </h1>
-// var randomQ = new XMLHttpRequest();
-// randomQ = randomQ.open('GET', '../questions/q1.txt');
 
-// ReactDOM.render(randomQ, document.getElementById('case1'));
 function butevent() {
-    playerpos += 1
-    playermove()
+    openquestion()
 }
 
+//Répond juste :
+function playermovetrue() {
+  ReactDOM.render(
+    <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>,
+    document.getElementById("case" + playerpos)
+  );
+  lastcase += 1;
+  console.log(lastcase);
 
-function playermove() {
-    ReactDOM.render(<img className="Oie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case" + playerpos));
-    lastcase += 1
-    console.log(lastcase);
-    
-    //Répond juste :
-    ReactDOM.render(<h1 className="casecontent"> DONE ! </h1>, document.getElementById('case' + lastcase))
-    //document.getElementById('case' + lastcase).style.backgroundColor = "Green";
-    
-    // Répond faux :
-    //ReactDOM.render(<h1 className="casecontent"> Wrong ! </h1>, document.getElementById('case' + lastcase))
-    //document.getElementById('case' + lastcase).style.backgroundColor = "Red";
+  ReactDOM.render(
+    <h1 className="casecontent"> DONE ! </h1>,
+    document.getElementById("case" + lastcase)
+  );
+  document.getElementById("case" + lastcase).style.backgroundColor = "Green";
 }
 
 function playermovetransition() {
-    document.getElementById('Oie').appendChild(document.getElementsByClassName('case'+playerpos+1))
+  document
+    .getElementById("Oie")
+    .appendChild(document.getElementsByClassName("case" + playerpos + 1));
 }
 
+// Répond faux :
+function playermovefalse() {
+  ReactDOM.render(
+    <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>,
+    document.getElementById("case" + playerpos)
+  );
+  lastcase += 1;
+  console.log(lastcase);
 
-
-
+  ReactDOM.render(
+    <h1 className="casecontent"> Wrong ! </h1>,
+    document.getElementById("case" + lastcase)
+  );
+  document.getElementById("case" + lastcase).style.backgroundColor = "Red";
+}
 
 function settings() {
-    alert("Options");
+  alert("Options");
 }
 
 function reset() {
-    location.reload();
+  location.reload();
 }
 
-function popUp() {
-
-}
+function popUp() {}
 
 function openquestion() {
-    answer = prompt("Answer this question");
-    switch (answer) {
-        case 1:
-            alert("Good Job ! :)")
-            break;
+  var answer = prompt("Answer this question");
+  switch (answer) {
+    case "1":
+      alert("Good Job ! :)");
+      playerpos += 1;
+      playermovetrue();
+      break;
 
-        default:
-            alert("Wrong")
-            break;
-    }
+    default:
+      alert("Wrong");
+      playerpos += 1;
+      playermovefalse();
+      break;
+  }
 }
-

@@ -10,7 +10,7 @@ function initialize() {
     cases.forEach(element => {
         ReactDOM.render(<h1 className="casecontent"> {element} </h1>, document.getElementById("case" + textpos));
         textpos += 1
-        ReactDOM.render(<img className="imgOie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case1"));
+        ReactDOM.render(<img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case1"));
     });
 }
 
@@ -26,16 +26,20 @@ function butevent() {
 
 
 function playermove() {
-    ReactDOM.render(<img className="imgOie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case" + playerpos));
+    ReactDOM.render(<img className="Oie" src="/img/OIE_1.png" alt="oie" ></img>, document.getElementById("case" + playerpos));
     lastcase += 1
     console.log(lastcase);
     ReactDOM.render(<h1 className="casecontent"> DONE ! </h1>, document.getElementById('case' + lastcase))
     document.getElementById('case' + lastcase).style.backgroundColor = "Green";
 }
 
-function playermovetrans() {
-
+function playermovetransition() {
+    document.getElementById('Oie').appendChild(document.getElementsByClassName('case'+playerpos+1))
 }
+
+
+
+
 
 function reset() {
     location.reload();
@@ -46,7 +50,7 @@ function popUp() {
 }
 
 function openquestion() {
-    answer = prompt("Answer this question douchebag");
+    answer = prompt("Answer this question");
     switch (answer) {
         case 1:
             alert("Good Job ! :)")

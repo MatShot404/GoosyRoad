@@ -4,6 +4,8 @@ var playerpos = 1;
 var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
 
+var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById("myModal");
 
 initialize();
 
@@ -21,6 +23,7 @@ function initialize() {
 
 
 function butevent() {
+    // modal.style.display = "block";
     openquestion();
 }
 
@@ -32,7 +35,6 @@ function playermovetrue() {
         document.getElementById("case" + playerpos)
     );
     lastcase += 1;
-    console.log(lastcase);
 
     ReactDOM.render(
         <h1 className="casecontent"> DONE ! </h1>,
@@ -54,7 +56,7 @@ function playermovefalse() {
 }
 
 function playermovetransition() {
-    Move
+    // Move
 }
 
 
@@ -83,4 +85,26 @@ function openquestion() {
             playermovefalse();
             break;
     }
+    console.log(playerpos);
 }
+
+
+// Modal :
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// $('#send').on('click', function (e) {
+//     e.preventDefault();
+//     answer = $('#answer').val();
+//     if (answer = 1) {
+//         playermovetrue();
+//     }
+// });
+
+// function submitForm() {
+//     var answer = $('answer').val();
+//     console.log(answer);
+// }

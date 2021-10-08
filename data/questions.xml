@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+    <question1>
+        <questionid>q1</questionid>
+        <questionLabel1>Quel est le mot de passe le plus sécurisé ?</questionLabel1>
+        <questionAnswer1>zEg _1$= - Hn</questionAnswer1>
+        <questionAnswer2>123456789</questionAnswer2>
+        <questionAnswer3>Iambornin1992</questionAnswer3>
+        <questionAnswer4>azerty123</questionAnswer4>
+        <questionRightAnswer>1</questionRightAnswer>
+    </question1>
+    <question2>
+        <questionid>q2</questionid>
+        <questionLabel2>Est-ce conseiller d'utiliser plusieurs fois un même mot de passe ?</questionLabel2>
+        <questionAnswer1>Oui</questionAnswer1>
+        <questionAnswer2>Non</questionAnswer2>
+        <questionAnswer3></questionAnswer3>
+        <questionAnswer4></questionAnswer4>
+        <questionRightAnswer>1</questionRightAnswer>
+    </question2>
+    <question3>
+        <questionid>q3</questionid>
+        <questionLabel3>Quel est le mot de passe le plus sécurisé ?</questionLabel3>
+        <questionAnswer1>zEg _1$= - Hn</questionAnswer1>
+        <questionAnswer2>123456789</questionAnswer2>
+        <questionAnswer3>Iambornin1992</questionAnswer3>
+        <questionAnswer4>azerty123</questionAnswer4>
+        <questionRightAnswer>1</questionRightAnswer>
+    </question3>
+    <question4>
+        <questionid>q4</questionid>
+        <questionLabel>Quel est le mot de passe le plus sécurisé ?</questionLabel>
+        <questionAnswer1>zEg _1$= - Hn</questionAnswer1>
+        <questionAnswer2>123456789</questionAnswer2>
+        <questionAnswer3>Iambornin1992</questionAnswer3>
+        <questionAnswer4>azerty123</questionAnswer4>
+        <questionRightAnswer>1</questionRightAnswer>
+    </question4>
+</questions>

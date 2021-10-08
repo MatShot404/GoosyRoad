@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="..\style\style.css" />
-    <script src="../js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="../js/jquery-3.6.0.min.js"></script> -->
     <script
       crossorigin
       src="https://unpkg.com/react@16/umd/react.development.js"
@@ -50,10 +50,10 @@
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>Question</h2>
+          <h2 id="question">Question</h2>
         </div>
-        <div class="modal-body">
+        <form id="questionAnswer" action="javascript:void(0);">
+          <div class="modal-body">
             <input type="radio" id="ans1" name="answer" value="1" />
             <label for="ans1">Réponse 1</label><br />
             <input type="radio" id="ans2" name="answer" value="2" />
@@ -62,8 +62,9 @@
             <label for="ans3">Réponse 3</label><br />
             <input type="radio" id="ans4" name="answer" value="4" />
             <label for="ans4">Réponse 4</label><br />
-            <button id="send" type="submit" onclick="submitForm();" class="modal-button">Valider</button>
-        </div>
+            <button type="submit" class="modal-button">Valider</button>
+          </div>
+        </form>
       </div>
     </div>
   </body>

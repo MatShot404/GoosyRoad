@@ -115,7 +115,6 @@ function butevent() {
 
 //Gestion réponse envoyée
 function submitForm(e) {
-    console.log(reponse[playerpos - 1]);
     e.preventDefault();
     if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
         console.log("Bonne réponse :)");
@@ -134,7 +133,7 @@ function submitForm(e) {
 //Réponse juste :
 function playermovetrue() {
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById(playercase));
+        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
 
     ReactDOM.render(
@@ -145,7 +144,7 @@ function playermovetrue() {
 // Réponse fausse :
 function playermovefalse() {
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById(playercase));
+        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
 
     ReactDOM.render(

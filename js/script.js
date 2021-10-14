@@ -3,7 +3,8 @@ var textpos = 1;
 var playerpos = 1;
 var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
-var modal = document.getElementById("questionModal");
+var questionModal = document.getElementById("questionModal");
+var optionsModal = document.getElementById("optionsModal");
 
 var listeQuestions = {
     "1question": "Quel est le mot de passe le plus sécurisé ?",
@@ -109,7 +110,7 @@ function butevent() {
     ReactDOM.render(
         <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos + "reponse4"]}</label>, document.getElementById("ans4Label")
     )
-    modal.style.display = "block";
+    questionModal.style.display = "block";
     //openquestion();
 }
 
@@ -120,13 +121,13 @@ function submitForm(e) {
         console.log("Bonne réponse :)");
         playerpos += 1;
         playermovetrue();
-        modal.style.display = "none";
+        questionModal.style.display = "none";
 
     } else {
         console.log("Mauvaise réponse :(");
         playerpos += 1;
         playermovefalse();
-        modal.style.display = "none";
+        questionModal.style.display = "none";
     }
 }
 
@@ -160,7 +161,7 @@ function playermovetransition() {
 
 //@TODO
 function settings() {
-    alert("Options");
+    optionsModal.style.display = "block";
 }
 
 // function popUp() { }
@@ -194,7 +195,9 @@ function reset() {
 // Modal :
 
 window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == questionModal) {
+        questionModal.style.display = "none";
+    } else if (event.target == optionsModal) {
+        optionsModal.style.display = "none";
     }
 }

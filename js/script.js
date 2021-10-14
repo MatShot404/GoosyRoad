@@ -3,9 +3,7 @@ var textpos = 1;
 var playerpos = 1;
 var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
-var numquestion = "question" + playerpos;
-
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("questionModal");
 
 var listeQuestions = {
     "1question": "Quel est le mot de passe le plus sécurisé ?",
@@ -28,6 +26,27 @@ var listeQuestions = {
     "3reponse3": "Mensuelle",
     "3reponse4": "Annuelle",
     "3reponse": "ans2",
+
+    "4question": "Quels acronyme ci-dessous n'est pas en lien avec le WiFi ?",
+    "4reponse1": "WPA",
+    "4reponse2": "WEP",
+    "4reponse3": "GTR",
+    "4reponse4": "IEEE",
+    "4reponse": "ans3",
+
+    "5question": "Pour supprimer ses données personnelles qui peut-on contacter ?",
+    "5reponse1": "La Commission Nationale de l'Informatique et des Libertés (CNIL)",
+    "5reponse2": "La Commission Nationale de Protection à l'Image (CNPI)",
+    "5reponse3": "La comission Européenne",
+    "5reponse4": "Commission chargée de l'application de l'article 26 de la Constitution",
+    "5reponse": "ans1",
+
+    "6question": "Qui sont les chapeaux blancs (White Hat)",
+    "6reponse1": "Un groupe de hacker russe ayant comme image de marque les chapeaux blancs",
+    "6reponse2": "Un ensemble de membres d'une entreprise ayant pour but de protéger les utilisateurs d'un service",
+    "6reponse3": "Des humoristes pas très marrants",
+    "6reponse4": "Des hackers de bonne foie (étiques) embauchés par des entreprises ayant pour objectif de découvrir des failles en et les en prévenir",
+    "6reponse": "ans4",
 }
 
 
@@ -54,101 +73,51 @@ var listeQuestions = {
 //     document.getElementById("question").innerHTML = txt;
 // }
 
-//Initialise et Envoi de la réponse lorsque l'utilisateur submit sa réponse
+//Initialise le jeu 
 initialize();
+
+//Envoi de la réponse lorsque l'utilisateur submit sa réponse
 document.getElementById('questionAnswer').addEventListener('submit', submitForm);
 
 //Initialisation du jeu
 function initialize() {
     //Chaque case affiche son numéro
     cases.forEach((element) => {
-        ReactDOM.render(
-            <h1 className="casecontent"> {element} </h1>,
-            document.getElementById("case" + textpos)
-        );
+        ReactDOM.render(<h1 className="casecontent"> {element} </h1>, document.getElementById("case" + textpos));
         textpos += 1;
     });
     //Affichage de l'oie
     ReactDOM.render(
-        <img id="oie" className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case1"));
+        <img id="oie" className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case1")
+    );
 }
 
-//Ouverture de la modal de question 
+//Ouverture de la modal de question avec contenu en fonction de la position du joueur
 function butevent() {
-    switch (playerpos) {
-        case 1:
-            ReactDOM.render(
-                <h2 id="question">{listeQuestions["1question"]}</h2>, document.getElementById("question")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans1" id="ans1Label">{listeQuestions["1reponse1"]}</label>, document.getElementById("ans1Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans2" id="ans2Label">{listeQuestions["1reponse2"]}</label>, document.getElementById("ans2Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans3" id="ans3Label">{listeQuestions["1reponse3"]}</label>, document.getElementById("ans3Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans4" id="ans4Label">{listeQuestions["1reponse4"]}</label>, document.getElementById("ans4Label")
-            )
-            break;
-        case 2:
-            ReactDOM.render(
-                <h2 id="question">{listeQuestions["2question"]}</h2>, document.getElementById("question")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans1" id="ans1Label">{listeQuestions["2reponse1"]}</label>, document.getElementById("ans1Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans2" id="ans2Label">{listeQuestions["2reponse2"]}</label>, document.getElementById("ans2Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans3" id="ans3Label">{listeQuestions["2reponse3"]}</label>, document.getElementById("ans3Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans4" id="ans4Label">{listeQuestions["2reponse4"]}</label>, document.getElementById("ans4Label")
-            );
-            break;
-        case 3:
-            ReactDOM.render(
-                <h2 id="question">{listeQuestions["3question"]}</h2>, document.getElementById("question")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans1" id="ans1Label">{listeQuestions["3reponse1"]}</label>, document.getElementById("ans1Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans2" id="ans2Label">{listeQuestions["3reponse2"]}</label>, document.getElementById("ans2Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans3" id="ans3Label">{listeQuestions["3reponse3"]}</label>, document.getElementById("ans3Label")
-            );
-            ReactDOM.render(
-                <label htmlFor="ans4" id="ans4Label">{listeQuestions["3reponse4"]}</label>, document.getElementById("ans4Label")
-            );
-            break;
-        default:
-            break;
-    }
+    ReactDOM.render(
+        <h2 id="question">{listeQuestions[playerpos + "question"]}</h2>, document.getElementById("question")
+    );
+    ReactDOM.render(
+        <label htmlFor="ans1" id="ans1Label">{listeQuestions[playerpos + "reponse1"]}</label>, document.getElementById("ans1Label")
+    );
+    ReactDOM.render(
+        <label htmlFor="ans2" id="ans2Label">{listeQuestions[playerpos + "reponse2"]}</label>, document.getElementById("ans2Label")
+    );
+    ReactDOM.render(
+        <label htmlFor="ans3" id="ans3Label">{listeQuestions[playerpos + "reponse3"]}</label>, document.getElementById("ans3Label")
+    );
+    ReactDOM.render(
+        <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos + "reponse4"]}</label>, document.getElementById("ans4Label")
+    )
     modal.style.display = "block";
     //openquestion();
 }
 
-//Affichage question/réponse
-var reponse = ['ans1', 'ans4', 'ans2', 'ans1', 'ans3', 'ans2', 'ans4', 'ans1', 'ans1', 'ans4', 'ans3', 'ans2'];
-var question = ['Quel est le mot de passe le plus sécurisé ?']
-// ReactDOM.render(
-//     <div>
-//         <h2 id="question">{question[playerpos - 1]}</h2>
-//     </div>,
-//     document.getElementById("question")
-// );
-
 //Gestion réponse envoyée
 function submitForm(e) {
-    console.log(reponse);
+    console.log(reponse[playerpos - 1]);
     e.preventDefault();
-    if (document.getElementById(reponse).checked == true) {
+    if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
         console.log("Bonne réponse :)");
         playerpos += 1;
         playermovetrue();
@@ -162,25 +131,21 @@ function submitForm(e) {
     }
 }
 
-//Répond juste :
+//Réponse juste :
 function playermovetrue() {
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>,
-        document.getElementById("case" + playerpos)
-    );
+        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById(playercase));
     lastcase += 1;
 
     ReactDOM.render(
-        <h1 className="casecontent"> DONE ! </h1>,
-        document.getElementById("case" + lastcase)
-    );
+        <h1 className="casecontent"> DONE ! </h1>, document.getElementById("case" + lastcase));
     document.getElementById("case" + lastcase).style.backgroundColor = "Green";
 }
 
-// Répond faux :
+// Réponse fausse :
 function playermovefalse() {
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
+        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById(playercase));
     lastcase += 1;
 
     ReactDOM.render(
@@ -228,6 +193,7 @@ function reset() {
 
 
 // Modal :
+
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";

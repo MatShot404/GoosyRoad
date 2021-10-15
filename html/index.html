@@ -23,10 +23,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
   </head>
   <body>
-    <a href="#settings" onclick="settings();">
-      <img class="optionButton" src="..\img\optionButton.svg" alt="" />
-    </a>
-    <img class="optionButton lives" src="..\img\optionButton.svg" alt="" />
+    <div class="header">
+      <a href="#settings" onclick="settings();">
+        <img class="optionButton" src="..\img\optionButton.svg" alt="options" />
+      </a>
+      <div id="lives" class="lives">
+        <h1>Vies :</h1>
+        <img class="lives" src="..\img\feather3.png" alt="vies"/>
+      </div>
+    </div>
+
     <!--  -->
     <main>
       <div class="table" id="table">
@@ -44,8 +50,11 @@
         <div class="case" id="case12"></div>
       </div>
     </main>
-    <button class="button" id="but" onclick="butevent()">Ok</button>
-    <button class="button" id="but" onclick="reset()">Reset</button>
+
+    <div class="buttons-container">
+      <button class="button" id="but" onclick="butevent()">Ok</button>
+      <button class="button" id="but" onclick="reset()">Reset</button>
+    </div>
 
     <div id="questionModal" class="modal">
       <!-- Modal content -->
@@ -83,5 +92,29 @@
         </div>
       </div>
     </div>
+
+    <div id="gameOverModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header-red">
+          <h2>Game Over</h2>
+        </div>
+        <div style="text-align: center;">
+          <button class="retryButton" id="but" onclick="reset()">Retry</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="winModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Bravo !</h2>
+        </div>
+        <div style="text-align: center;">
+          Vous avez gagné ! Mais vous pouvez réessayer afin de vous améliorer :) <br>
+          <button class="retryButton" id="but" onclick="reset()">Retry</button>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

@@ -9,9 +9,9 @@ var lives = 2;
 
 var listeQuestions = {
     "1question": "Quel est le mot de passe le plus sécurisé ?",
-    "1reponse1": "zEg _1$= - Hn",
+    "1reponse1": "zEg_1$=-Hn",
     "1reponse2": "123456789",
-    "1reponse3": "Iambornin1992",
+    "1reponse3": "Iwasbornin1992",
     "1reponse4": "azerty123",
     "1reponse": "ans1",
 
@@ -22,7 +22,7 @@ var listeQuestions = {
     "2reponse4": "Uniquement des lettres",
     "2reponse": "ans3",
 
-    "3question": "Quels périodicité maximale acceptable devez-vous effectuer une sauvegarde de vos données pour être protégé ?",
+    "3question": "A quelle périodicité maximale acceptable devez-vous effectuer une sauvegarde de vos données pour être protégé ?",
     "3reponse1": "Quotidienne",
     "3reponse2": "Hebdomadaire",
     "3reponse3": "Mensuelle",
@@ -43,7 +43,7 @@ var listeQuestions = {
     "5reponse4": "Commission chargée de l'application de l'article 26 de la Constitution",
     "5reponse": "ans1",
 
-    "6question": "Qui sont les chapeaux blancs (White Hat)",
+    "6question": "Qui sont les chapeaux blancs (White Hat) ?",
     "6reponse1": "Un groupe de hacker russe ayant comme image de marque les chapeaux blancs",
     "6reponse2": "Un ensemble de membres d'une entreprise ayant pour but de protéger les utilisateurs d'un service",
     "6reponse3": "Des humoristes pas très marrants",
@@ -56,6 +56,41 @@ var listeQuestions = {
     "7reponse3": "",
     "7reponse4": "",
     "7reponse": "ans2",
+
+    "8question": "A quoi servent les mises à jours de vos applications ?",
+    "8reponse1": "A ajouter des bugs dans l'application",
+    "8reponse2": "A réparé les failles de sécurité",
+    "8reponse3": "A rien, le logiciel est déjà bien comme il est",
+    "8reponse4": "A aller chez les concurrents",
+    "8reponse": "ans2",
+
+    "9question": "Avec quoi sécurisé l'accès à vos appareils si quelqu'un vous les volés ?",
+    "9reponse1": "Un code à 4 chiffres",
+    "9reponse2": "Un cadena (physique)",
+    "9reponse3": "Une coque résistante",
+    "9reponse4": "Un schéma",
+    "9reponse": "ans4",
+
+    "10question": "Pour veiller à la sécurité de votre machine et de vos données pour un téléchargement de logiciel il ne faut pas :",
+    "10reponse1": "Téléchargez vos programmes sur les sites de leurs éditeurs",
+    "10reponse2": "Décocher toutes les cases proposant d’installer des logiciels complémentaires",
+    "10reponse3": "Cracker l'application pour l'avoir gratuitement si payante",
+    "10reponse4": "Désactivez l’ouverture automatique des documents téléchargés et lancez une analyse antivirus",
+    "10reponse": "ans3",
+
+    "11question": "Dans les 4 propositions suivantes, laquelle est déconseillé pour vérifier si un mail est sécurisé ?",
+    "11reponse1": "Ouvrir les pièces jointes et donc vérifier les documents envoyés",
+    "11reponse2": "Vérifier l'identité de l'envoyeur (son nom, mail) ",
+    "11reponse3": "Se renseigner sur internet par rapport au mail reçu",
+    "11reponse4": "Inspecter le mail pour trouver de possible fautes d'orthographe",
+    "11reponse": "ans1",
+
+    "12question": "Dans les réponses suivantes, laquelle ne met pas en jeu les informations sensibles d'une entreprise ?",
+    "12reponse1": "Brancher un support amovible personnel sur l'ordinateur",
+    "12reponse2": "Enregistrer les informations professionnelle sur des équipements personnels",
+    "12reponse3": "Envoyer des mails avec un compte utilisé à des fins personnel",
+    "12reponse4": "Éteindre / verrouiller un ordinateur professionnel quand il n'est pas utilisé",
+    "12reponse": "ans1",
 }
 
 //Initialise le jeu 
@@ -101,6 +136,23 @@ function butevent() {
 //Gestion réponse envoyée
 function submitForm(e) {
     e.preventDefault();
+
+    if (playerpos == 12) {
+        if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
+            ReactDOM.render(
+                <h1 className="casecontent"> DONE ! </h1>, document.getElementById("case" + playerpos));
+            document.getElementById("case" + playerpos).style.backgroundColor = "Green";
+            winModal.style.display = "block";
+        } else {
+            checkLives();
+            ReactDOM.render(
+                <h1 className="casecontent"> Wrong ! </h1>, document.getElementById("case" + playerpos));
+            document.getElementById("case" + playerpos).style.backgroundColor = "Red";
+            gameOverModal.style.display = "block"
+        }
+        questionModal.style.display = "none";
+        
+    }
     if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
         console.log("Bonne réponse :)");
         playerpos += 1;
@@ -131,7 +183,7 @@ function playermovetrue() {
 // Réponse fausse :
 function playermovefalse() {
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
+        <img className="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
     lastcase += 1;
     lives -= 1;
 
@@ -144,17 +196,22 @@ function checkLives() {
     if (lives == 2) {
         console.log("2 vies");
     } else if (lives == 1) {
-        console.log("1 vies");
+        ReactDOM.render(
+            <img className="lives" id="lives" src="..\img\feather2.png" alt="2 vies" />, document.getElementById("lives")
+        );
+        console.log("1 vie");
     } else if (lives == 0) {
-        console.log("0 vies");
+        ReactDOM.render(
+            <img className="lives" id="lives" src="..\img\feather1.png" alt="1 vie" />, document.getElementById("lives")
+        );
+        console.log("0 vie");
     } else if (lives < 0) {
         gameOver();
     }
 }
 
 function gameOver() {
-    alert("You lose !");
-    location.reload();
+    gameOverModal.style.display = "block";
 }
 
 function playermovetransition() {

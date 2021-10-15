@@ -6,8 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="..\style\style.css" />
     <!-- <script src="../js/jquery-3.6.0.min.js"></script> -->
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" defer></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"defer></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      defer
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      defer
+    ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="../js/script.js" type="text/babel"></script>
     <script src="../js/Move.js" type="text/babel"></script>
@@ -18,6 +26,7 @@
     <a href="#settings" onclick="settings();">
       <img class="optionButton" src="..\img\optionButton.svg" alt="" />
     </a>
+    <img class="optionButton lives" src="..\img\optionButton.svg" alt="" />
     <!--  -->
     <main>
       <div class="table" id="table">
@@ -46,14 +55,22 @@
         </div>
         <form id="questionAnswer" action="javascript:void(0);">
           <div class="modal-body">
-            <input type="radio" id="ans1" name="answer" value="1" />
-            <label for="ans1" id="ans1Label">Réponse 1</label><br />
-            <input type="radio" id="ans2" name="answer" value="2" />
-            <label for="ans2" id="ans2Label">Réponse 2</label><br />
-            <input type="radio" id="ans3" name="answer" value="3" />
-            <label for="ans3" id="ans3Label">Réponse 3</label><br />
-            <input type="radio" id="ans4" name="answer" value="4" />
-            <label for="ans4" id="ans4Label">Réponse 4</label><br />
+            <div>
+              <input type="radio" id="ans1" name="answer" value="1" />
+              <label for="ans1" id="ans1Label">Réponse 1</label><br />
+            </div>
+            <div>
+              <input type="radio" id="ans2" name="answer" value="2" />
+              <label for="ans2" id="ans2Label">Réponse 2</label><br />
+            </div>
+            <div>
+              <input type="radio" id="ans3" name="answer" value="3" />
+              <label for="ans3" id="ans3Label">Réponse 3</label><br />
+            </div>
+            <div>
+              <input type="radio" id="ans4" name="answer" value="4" />
+              <label for="ans4" id="ans4Label">Réponse 4</label><br />
+            </div>
             <button type="submit" class="modal-button">Valider</button>
           </div>
         </form>

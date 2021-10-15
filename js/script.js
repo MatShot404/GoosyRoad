@@ -5,6 +5,7 @@ var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
 var questionModal = document.getElementById("questionModal");
 var optionsModal = document.getElementById("optionsModal");
+var lives = 2;
 
 var listeQuestions = {
     "1question": "Quel est le mot de passe le plus sécurisé ?",
@@ -21,7 +22,7 @@ var listeQuestions = {
     "2reponse4": "Uniquement des lettres",
     "2reponse": "ans3",
 
-    "3question": "Quels sont les deux périodicité acceptable auxquelles vous devez effectué une sauvegarde de vos données pour être protégé ?",
+    "3question": "Quels périodicité maximale acceptable devez-vous effectuer une sauvegarde de vos données pour être protégé ?",
     "3reponse1": "Quotidienne",
     "3reponse2": "Hebdomadaire",
     "3reponse3": "Mensuelle",
@@ -48,31 +49,14 @@ var listeQuestions = {
     "6reponse3": "Des humoristes pas très marrants",
     "6reponse4": "Des hackers de bonne foie (étiques) embauchés par des entreprises ayant pour objectif de découvrir des failles en et les en prévenir",
     "6reponse": "ans4",
+
+    "7question": "Est-ce conseiller d'utiliser plusieurs fois un même mot de passe ?",
+    "7reponse1": "Oui",
+    "7reponse2": "Non",
+    "7reponse3": "",
+    "7reponse4": "",
+    "7reponse": "ans2",
 }
-
-
-//Gestion import XML
-// loadXMLDoc();
-// function loadXMLDoc() {
-//     var xmlhttp = new XMLHttpRequest();
-//     xmlhttp.onreadystatechange = function () {
-//         if (this.readyState == 4 && this.status == 200) {
-//             myFunction(this);
-//         }
-//     };
-//     xmlhttp.open("GET", "../data/questions.xml", true);
-//     xmlhttp.send();
-// }
-// function myFunction(xml) {
-//     var x, i, xmlDoc, txt;
-//     xmlDoc = xml.responseXML;
-//     txt = "";
-//     x = xmlDoc.getElementsByTagName("questionLabel" + playerpos);
-//     for (i = 0; i < x.length; i++) {
-//         txt += x[i].childNodes[0].nodeValue + "<br>";
-//     }
-//     document.getElementById("question").innerHTML = txt;
-// }
 
 //Initialise le jeu 
 initialize();
@@ -122,12 +106,14 @@ function submitForm(e) {
         playerpos += 1;
         playermovetrue();
         questionModal.style.display = "none";
+        checkLives();
 
     } else {
         console.log("Mauvaise réponse :(");
         playerpos += 1;
         playermovefalse();
         questionModal.style.display = "none";
+        checkLives();
     }
 }
 
@@ -147,10 +133,28 @@ function playermovefalse() {
     ReactDOM.render(
         <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
+    lives -= 1;
 
     ReactDOM.render(
         <h1 className="casecontent"> Wrong ! </h1>, document.getElementById("case" + lastcase));
     document.getElementById("case" + lastcase).style.backgroundColor = "Red";
+}
+
+function checkLives() {
+    if (lives == 2) {
+        console.log("2 vies");
+    } else if (lives == 1) {
+        console.log("1 vies");
+    } else if (lives == 0) {
+        console.log("0 vies");
+    } else if (lives < 0) {
+        gameOver();
+    }
+}
+
+function gameOver() {
+    alert("You lose !");
+    location.reload();
 }
 
 function playermovetransition() {

@@ -3,8 +3,6 @@ var textpos = 1;
 var playerpos = 1;
 var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
-var questionModal = document.getElementById("questionModal");
-var optionsModal = document.getElementById("optionsModal");
 var lives = 2;
 
 var listeQuestions = {
@@ -90,7 +88,7 @@ var listeQuestions = {
     "12reponse2": "Enregistrer les informations professionnelle sur des équipements personnels",
     "12reponse3": "Envoyer des mails avec un compte utilisé à des fins personnel",
     "12reponse4": "Éteindre / verrouiller un ordinateur professionnel quand il n'est pas utilisé",
-    "12reponse": "ans1",
+    "12reponse": "ans4",
 }
 
 //Initialise le jeu 
@@ -139,19 +137,19 @@ function submitForm(e) {
 
     if (playerpos == 12) {
         if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
+            checkLives();
             ReactDOM.render(
                 <h1 className="casecontent"> DONE ! </h1>, document.getElementById("case" + playerpos));
             document.getElementById("case" + playerpos).style.backgroundColor = "Green";
-            winModal.style.display = "block";
         } else {
             checkLives();
             ReactDOM.render(
                 <h1 className="casecontent"> Wrong ! </h1>, document.getElementById("case" + playerpos));
             document.getElementById("case" + playerpos).style.backgroundColor = "Red";
-            gameOverModal.style.display = "block"
         }
+        winModal.style.display = "block"
         questionModal.style.display = "none";
-        
+
     }
     if (document.getElementById(listeQuestions[playerpos + "reponse"]).checked == true) {
         console.log("Bonne réponse :)");
@@ -197,15 +195,26 @@ function checkLives() {
         console.log("2 vies");
     } else if (lives == 1) {
         ReactDOM.render(
-            <img className="lives" id="lives" src="..\img\feather2.png" alt="2 vies" />, document.getElementById("lives")
+            <div>
+                <h1 className="livesLabel">Vies :</h1>
+                <img className="lives" id="lives" src="..\img\feather2.png" alt="2 vies" />
+            </div>
+            , document.getElementById("lives")
         );
         console.log("1 vie");
     } else if (lives == 0) {
         ReactDOM.render(
-            <img className="lives" id="lives" src="..\img\feather1.png" alt="1 vie" />, document.getElementById("lives")
+            <div>
+                <h1 className="livesLabel" >Vies :</h1>
+                <img className="lives" id="lives" src="..\img\feather1.png" alt="1 vie" />
+            </div>
+            , document.getElementById("lives")
         );
         console.log("0 vie");
     } else if (lives < 0) {
+        ReactDOM.render(
+            <div></div>, document.getElementById("lives")
+        );
         gameOver();
     }
 }

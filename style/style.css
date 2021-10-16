@@ -105,6 +105,10 @@ main {
   height: 10vh;
 }
 
+.livesLabel {
+  text-align: end;
+}
+
 /* MODAL */
 
 /* The Modal (background) */

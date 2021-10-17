@@ -20,10 +20,9 @@ main {
 }
 
 .table {
+  display: flex;
   margin-top: 40vh;
   margin-bottom: 5vh;
-  display: flex;
-  align-items: flex-end;
 }
 
 .case {
@@ -181,8 +180,8 @@ main {
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
+  background-color: #fde34e;
+  color: black;
 }
 
 .modal-header-red {

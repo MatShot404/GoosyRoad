@@ -53,7 +53,7 @@
 
     <div class="buttons-container">
       <button class="button" id="but" onclick="butevent()">Ok</button>
-      <button class="button" id="but" onclick="reset()">Reset</button>
+      <!-- <button class="button" id="but" onclick="reset()">Reset</button> -->
     </div>
 
     <div id="questionModal" class="modal">
@@ -98,8 +98,12 @@
         <div class="modal-header-red">
           <h2>Game Over</h2>
         </div>
-        <div style="text-align: center">
-          <button class="retryButton" id="but" onclick="reset()">Retry</button>
+        <div class="modal-body" style="text-align: center">
+          Vous avez perdu !
+          <br />
+          <button class="retryButton" id="but" onclick="reset()">
+            Recommencer
+          </button>
         </div>
       </div>
     </div>
@@ -109,10 +113,12 @@
         <div class="modal-header">
           <h2>Bravo !</h2>
         </div>
-        <div style="text-align: center">
+        <div class="modal-body" style="text-align: center">
           Vous avez gagné ! Mais vous pouvez réessayer afin de vous améliorer :)
           <br />
-          <button class="retryButton" id="but" onclick="reset()">Retry</button>
+          <button class="retryButton" id="but" onclick="reset()">
+            Recommencer
+          </button>
         </div>
       </div>
     </div>

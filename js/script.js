@@ -91,6 +91,8 @@ var listeQuestions = {
     "12reponse": "ans4",
 }
 
+//var listeQuestions = require('../data/listeQuestions.json');
+
 //Initialise le jeu 
 initialize();
 

@@ -150,7 +150,7 @@ function butevent() {
         <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos - 1].reponse4}</label>, document.getElementById("ans4Label")
     )
     questionModal.style.display = "block";
-    playFX();
+    playSound(play);
     //openquestion();
 }
 
@@ -172,7 +172,7 @@ function submitForm(e) {
             document.getElementById("case" + playerpos).style.backgroundColor = "rgba(128, 0, 0, 0.6)";
         }
         winModal.style.display = "block";
-        winFX();
+        playSound(win);
         questionModal.style.display = "none";
     } else {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
@@ -182,6 +182,7 @@ function submitForm(e) {
             playermovetrue();
             questionModal.style.display = "none";
             checkLives();
+            playSound(goodA);
         } else {
             // Mauvaise réponse
             //console.log("Mauvaise réponse :(");
@@ -189,6 +190,7 @@ function submitForm(e) {
             playermovefalse();
             questionModal.style.display = "none";
             checkLives();
+            playSound(badA);
         }
     }
     //Vérification de la réponse du joueur
@@ -249,7 +251,7 @@ function checkLives() {
 
 function gameOver() {
     gameOverModal.style.display = "block";
-    loseFX();
+    playSound(lose);
 }
 
 function playermovetransition() {
@@ -299,23 +301,17 @@ window.onclick = function (event) {
 
 // Sounds
 
-var playSound = document.getElementById("play");
-var loseSound = document.getElementById("lose");
-var winSound = document.getElementById("win");
+var play = document.getElementById("play");
+var lose = document.getElementById("lose");
+var win = document.getElementById("win");
+var good = document.getElementById("goodA");
+var bad = document.getElementById("badA");
 
-function playFX() {
-    checkMute(playSound);
-    playSound.play();
-}
 
-function loseFX() {
-    checkMute(loseSound);
-    loseSound.play();
-}
 
-function winFX() {
-    checkMute(winSound);
-    winSound.play();
+function playSound(sound) {
+    checkMute(sound);
+    sound.play();
 }
 
 function checkMute(sound) {

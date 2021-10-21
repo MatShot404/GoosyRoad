@@ -304,13 +304,24 @@ var loseSound = document.getElementById("lose");
 var winSound = document.getElementById("win");
 
 function playFX() {
+    checkMute(playSound);
     playSound.play();
 }
 
 function loseFX() {
+    checkMute(loseSound);
     loseSound.play();
 }
 
 function winFX() {
+    checkMute(winSound);
     winSound.play();
+}
+
+function checkMute(sound) {
+    if ($('input[name=mute]').is(':checked')) {
+        sound.muted = true;
+    } else {
+        sound.muted = false;
+    }
 }

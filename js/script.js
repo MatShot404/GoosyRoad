@@ -35,7 +35,7 @@ var listeQuestions = [
         "question": "Quel acronyme ci-dessous n'est pas en lien avec le Wi-Fi ?",
         "reponse1": "WPA",
         "reponse2": "WEP",
-        "reponse3": "GTR",
+        "reponse3": "IFI",
         "reponse4": "IEEE",
         "reponse": "ans3"
     },
@@ -66,24 +66,24 @@ var listeQuestions = [
 
     {
         "question": "A quoi servent les mises à jours de vos applications ?",
-        "reponse1": "A ajouter des bugs dans l'application",
-        "reponse2": "A réparé les failles de sécurité",
+        "reponse1": "A rajouter des bugs dans l'application",
+        "reponse2": "A réparé les potentielles failles de sécurité",
         "reponse3": "A rien, le logiciel est déjà bien comme il est",
-        "reponse4": "A aller chez les concurrents",
+        "reponse4": "A améliorer les performances globales de votre machine",
         "reponse": "ans2"
     },
 
     {
-        "question": "Avec quoi sécurisé l'accès à vos appareils si quelqu'un vous les volés ?",
+        "question": "Quel est le meilleur moyen d'authentification à un appareil mobile ?",
         "reponse1": "Un code à 4 chiffres",
         "reponse2": "Un cadena (physique)",
-        "reponse3": "Une coque résistante",
+        "reponse3": "Une coque en acier inoxydable",
         "reponse4": "Un schéma",
         "reponse": "ans4"
     },
     {
-        "question": "Pour veiller à la sécurité de votre machine et de vos données pour un téléchargement de logiciel il ne faut pas :",
-        "reponse1": "Téléchargez vos programmes sur les sites de leurs éditeurs",
+        "question": "Pour veiller à la sécurité de votre machine et de vos données pour un téléchargement de logiciel, il ne faut pas :",
+        "reponse1": "Téléchargez vos programmes sur les sites de leurs éditeurs officiels",
         "reponse2": "Décocher toutes les cases proposant d’installer des logiciels complémentaires",
         "reponse3": "Cracker l'application pour l'avoir gratuitement si payante",
         "reponse4": "Désactivez l’ouverture automatique des documents téléchargés et lancez une analyse antivirus",
@@ -92,7 +92,7 @@ var listeQuestions = [
     {
         "question": "Dans les 4 propositions suivantes, laquelle est déconseillé pour vérifier si un mail est sécurisé ?",
         "reponse1": "Ouvrir les pièces jointes et donc vérifier les documents envoyés",
-        "reponse2": "Vérifier l'identité de l'envoyeur (son nom, mail) ",
+        "reponse2": "Vérifier l'identité de l'expéditeur (son nom, adresse mail,...) ",
         "reponse3": "Se renseigner sur internet par rapport au mail reçu",
         "reponse4": "Inspecter le mail pour trouver de possible fautes d'orthographe",
         "reponse": "ans1"
@@ -130,10 +130,7 @@ function initialize() {
 
 //Ouverture de la modal de question avec contenu en fonction de la position du joueur
 function butevent() {
-
-    // ReactDOM.render(
-    //     <h2 id="question">{listeQuestions[playerpos + "question"]}</h2>, document.getElementById("question")
-    // );
+    playSound(play);
     ReactDOM.render(
         <h2 id="question">{listeQuestions[playerpos - 1].question}</h2>, document.getElementById("question")
     );
@@ -150,51 +147,46 @@ function butevent() {
         <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos - 1].reponse4}</label>, document.getElementById("ans4Label")
     )
     questionModal.style.display = "block";
-    playSound(play);
-    //openquestion();
 }
 
-//Gestion réponse envoyée
+//Gestion des réponses envoyées
 function submitForm(e) {
     e.preventDefault();
 
-    //Si le joueur termine le jeu
+    //Si le joueur est à la fin du plateau de jeu
     if (playerpos == 12) {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
-            checkLives();
-            ReactDOM.render(
-                <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>, document.getElementById("case" + lastcase));
             document.getElementById("case" + playerpos).style.backgroundColor = "rgba(0, 128, 0, 0.6)";
+            youWin();
         } else {
+            lives -= 1;
             checkLives();
-            ReactDOM.render(
-                <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>, document.getElementById("case" + lastcase));
             document.getElementById("case" + playerpos).style.backgroundColor = "rgba(128, 0, 0, 0.6)";
+            if (lives > 0) {
+                youWin();
+            }
         }
-        winModal.style.display = "block";
-        playSound(win);
         questionModal.style.display = "none";
     } else {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
             //Bonne réponse
             //console.log("Bonne réponse :)");
+            playSound(goodA);
             playerpos += 1;
             playermovetrue();
             questionModal.style.display = "none";
             checkLives();
-            playSound(goodA);
         } else {
             // Mauvaise réponse
             //console.log("Mauvaise réponse :(");
+            playSound(badA);
             playerpos += 1;
             playermovefalse();
             questionModal.style.display = "none";
             checkLives();
-            playSound(badA);
         }
     }
     //Vérification de la réponse du joueur
-
 }
 
 //Réponse juste :
@@ -249,9 +241,14 @@ function checkLives() {
     }
 }
 
+function youWin() {
+    playSound(win);
+    winModal.style.display = "block";
+}
+
 function gameOver() {
-    gameOverModal.style.display = "block";
     playSound(lose);
+    gameOverModal.style.display = "block";
 }
 
 function playermovetransition() {

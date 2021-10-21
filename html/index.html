@@ -51,8 +51,18 @@
       </div>
     </main>
 
+    <audio id="play">
+      <source src="../sounds/play.wav" type="audio/mpeg" />
+    </audio>
+    <audio id="lose">
+      <source src="../sounds/gameOver2.wav" type="audio/mpeg" />
+    </audio>
+    <audio id="win">
+      <source src="../sounds/win.wav" type="audio/mpeg" />
+    </audio>
+
     <div class="buttons-container">
-      <button class="button" id="but" onclick="butevent()">Ok</button>
+      <button class="button" id="but" onclick="butevent();">Ok</button>
       <!-- <button class="button" id="but" onclick="reset()">Reset</button> -->
     </div>
 
@@ -64,27 +74,30 @@
         </div>
         <form id="questionAnswer" action="javascript:void(0);">
           <div class="modal-body">
-            <div>
-              <input type="radio" id="ans1" name="answer" value="1" />
-              <label for="ans1" id="ans1Label">Réponse 1</label><br />
-            </div>
-            <div>
-              <input type="radio" id="ans2" name="answer" value="2" />
-              <label for="ans2" id="ans2Label">Réponse 2</label><br />
-            </div>
-            <div>
-              <input type="radio" id="ans3" name="answer" value="3" />
-              <label for="ans3" id="ans3Label">Réponse 3</label><br />
-            </div>
-            <div>
-              <input type="radio" id="ans4" name="answer" value="4" />
-              <label for="ans4" id="ans4Label">Réponse 4</label><br />
+            <div class="answers">
+              <div class="modal-answers">
+                <input type="radio" id="ans1" name="answer" value="1" />
+                <label for="ans1" id="ans1Label">Réponse 1</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans2" name="answer" value="2" />
+                <label for="ans2" id="ans2Label">Réponse 2</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans3" name="answer" value="3" />
+                <label for="ans3" id="ans3Label">Réponse 3</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans4" name="answer" value="4" />
+                <label for="ans4" id="ans4Label">Réponse 4</label><br />
+              </div>
             </div>
             <button type="submit" class="modal-button">Valider</button>
           </div>
         </form>
       </div>
     </div>
+
     <div id="optionsModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">

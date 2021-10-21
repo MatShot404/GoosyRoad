@@ -15,8 +15,8 @@ var listeQuestions = [
         "reponse": "ans1"
     },
     {
-        "question": "Un mot de passe pour être idéal doit contenir :",
-        "reponse1": "Une majuscule au début suivi par 4 lettres",
+        "question": "Un mot de passe, pour être idéal doit contenir :",
+        "reponse1": "Une majuscule au début, suivi par 4 lettres",
         "reponse2": "Des chiffres un peu partout ",
         "reponse3": "Des chiffres, des lettres et des caractères spéciaux",
         "reponse4": "Uniquement des lettres",
@@ -32,7 +32,7 @@ var listeQuestions = [
     },
 
     {
-        "question": "Quels acronyme ci-dessous n'est pas en lien avec le WiFi ?",
+        "question": "Quel acronyme ci-dessous n'est pas en lien avec le Wi-Fi ?",
         "reponse1": "WPA",
         "reponse2": "WEP",
         "reponse3": "GTR",
@@ -44,15 +44,15 @@ var listeQuestions = [
         "reponse1": "La Commission Nationale de l'Informatique et des Libertés (CNIL)",
         "reponse2": "La Commission Nationale de Protection à l'Image (CNPI)",
         "reponse3": "La comission Européenne",
-        "reponse4": "Commission chargée de l'application de l'article 26 de la Constitution",
+        "reponse4": "La Commission chargée de l'application de l'article 26 de la Constitution",
         "reponse": "ans1"
     },
     {
         "question": "Qui sont les chapeaux blancs (White Hat) ?",
         "reponse1": "Un groupe de hacker russe ayant comme image de marque les chapeaux blancs",
         "reponse2": "Un ensemble de membres d'une entreprise ayant pour but de protéger les utilisateurs d'un service",
-        "reponse3": "Des humoristes pas très marrants",
-        "reponse4": "Des hackers de bonne foie (étiques) embauchés par des entreprises ayant pour objectif de découvrir des failles en et les en prévenir",
+        "reponse3": "Une association loi 1901 non lucrative de cybersécurité",
+        "reponse4": "Des hackers de bonne foie (étiques) embauchés par des entreprises, ayant pour objectif de découvrir des failles et les en prévenir",
         "reponse": "ans4"
     },
     {
@@ -130,6 +130,7 @@ function initialize() {
 
 //Ouverture de la modal de question avec contenu en fonction de la position du joueur
 function butevent() {
+
     // ReactDOM.render(
     //     <h2 id="question">{listeQuestions[playerpos + "question"]}</h2>, document.getElementById("question")
     // );
@@ -149,6 +150,7 @@ function butevent() {
         <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos - 1].reponse4}</label>, document.getElementById("ans4Label")
     )
     questionModal.style.display = "block";
+    playFX();
     //openquestion();
 }
 
@@ -156,36 +158,41 @@ function butevent() {
 function submitForm(e) {
     e.preventDefault();
 
+    //Si le joueur termine le jeu
     if (playerpos == 12) {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
             checkLives();
             ReactDOM.render(
-                <h1 className="casecontent"> DONE ! </h1>, document.getElementById("case" + playerpos));
-            document.getElementById("case" + playerpos).style.backgroundColor = "Green";
+                <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>, document.getElementById("case" + lastcase));
+            document.getElementById("case" + playerpos).style.backgroundColor = "rgba(0, 128, 0, 0.6)";
         } else {
             checkLives();
             ReactDOM.render(
-                <h1 className="casecontent"> Wrong ! </h1>, document.getElementById("case" + playerpos));
-            document.getElementById("case" + playerpos).style.backgroundColor = "Red";
+                <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>, document.getElementById("case" + lastcase));
+            document.getElementById("case" + playerpos).style.backgroundColor = "rgba(128, 0, 0, 0.6)";
         }
-        winModal.style.display = "block"
+        winModal.style.display = "block";
+        winFX();
         questionModal.style.display = "none";
-
-    }
-    if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
-        console.log("Bonne réponse :)");
-        playerpos += 1;
-        playermovetrue();
-        questionModal.style.display = "none";
-        checkLives();
-
     } else {
-        console.log("Mauvaise réponse :(");
-        playerpos += 1;
-        playermovefalse();
-        questionModal.style.display = "none";
-        checkLives();
+        if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
+            //Bonne réponse
+            //console.log("Bonne réponse :)");
+            playerpos += 1;
+            playermovetrue();
+            questionModal.style.display = "none";
+            checkLives();
+        } else {
+            // Mauvaise réponse
+            //console.log("Mauvaise réponse :(");
+            playerpos += 1;
+            playermovefalse();
+            questionModal.style.display = "none";
+            checkLives();
+        }
     }
+    //Vérification de la réponse du joueur
+
 }
 
 //Réponse juste :
@@ -242,6 +249,7 @@ function checkLives() {
 
 function gameOver() {
     gameOverModal.style.display = "block";
+    loseFX();
 }
 
 function playermovetransition() {
@@ -279,8 +287,6 @@ function reset() {
 // }
 
 
-
-
 // Modal :
 
 window.onclick = function (event) {
@@ -289,4 +295,22 @@ window.onclick = function (event) {
     } else if (event.target == optionsModal) {
         optionsModal.style.display = "none";
     }
+}
+
+// Sounds
+
+var playSound = document.getElementById("play");
+var loseSound = document.getElementById("lose");
+var winSound = document.getElementById("win");
+
+function playFX() {
+    playSound.play();
+}
+
+function loseFX() {
+    loseSound.play();
+}
+
+function winFX() {
+    winSound.play();
 }

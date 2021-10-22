@@ -12,11 +12,10 @@ body {
 }
 
 main {
+  display: flex;
   margin: 0;
   padding: 0;
-  top: 50vh;
-  display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .table {
@@ -28,6 +27,7 @@ main {
 .case {
   margin: 8px;
   width: 7vw;
+  height: 7vw;
   aspect-ratio: 1;
   max-width: 140px;
   top: 50px;
@@ -35,7 +35,21 @@ main {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 700px) {
+  .table {
+    flex-wrap: wrap; 
+  }
+  .casecontent {
+  font-size: 1rem;
+  }
+  .optionButton {
+    max-height: 5vh;
+  }
+}
+
 .casecontent {
+  margin: auto;
+  margin-top: 10%;
   color: white;
   text-align: center;
 }
@@ -44,7 +58,6 @@ main {
   position: relative;
   max-height: 70vh;
   width: 100%;
-  transition: all 1s linear;
 }
 
 .buttons-container {
@@ -89,6 +102,10 @@ main {
   min-height: 50px;
 }
 
+.retryButton:hover {
+  background-color: #419443;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -99,10 +116,6 @@ main {
   position: sticky;
   min-height: 100px;
   height: 10vh;
-}
-
-.optionButton:hover {
-  border: red 2px solid;
 }
 
 .switch {
@@ -167,6 +180,15 @@ input:checked + .slider:before {
 .livesLabel {
   text-align: end;
   margin: 10px;
+}
+
+.livesImg {
+  max-width: 240px;
+}
+
+.gameTitle {
+  position: absolute;
+  text-align: center;
 }
 
 /* MODAL */

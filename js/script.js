@@ -171,19 +171,13 @@ function submitForm(e) {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
             //Bonne réponse
             //console.log("Bonne réponse :)");
-            playSound(goodA);
             playerpos += 1;
             playermovetrue();
-            questionModal.style.display = "none";
-            checkLives();
         } else {
             // Mauvaise réponse
             //console.log("Mauvaise réponse :(");
-            playSound(badA);
             playerpos += 1;
             playermovefalse();
-            questionModal.style.display = "none";
-            checkLives();
         }
     }
     //Vérification de la réponse du joueur
@@ -191,6 +185,8 @@ function submitForm(e) {
 
 //Réponse juste :
 function playermovetrue() {
+    playSound(goodA);
+    questionModal.style.display = "none";
     ReactDOM.render(
         <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
@@ -202,10 +198,13 @@ function playermovetrue() {
 
 // Réponse fausse :
 function playermovefalse() {
+    playSound(badA);
+    questionModal.style.display = "none";
     ReactDOM.render(
         <img className="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
     lastcase += 1;
     lives -= 1;
+    checkLives();
 
     ReactDOM.render(
         <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>, document.getElementById("case" + lastcase));

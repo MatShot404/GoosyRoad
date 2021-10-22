@@ -27,10 +27,8 @@ main {
 
 .case {
   margin: 8px;
-  width: 8vw;
+  width: 7vw;
   aspect-ratio: 1;
-  min-height: 60px;
-  min-width: 60px;
   max-width: 140px;
   top: 50px;
   justify-content: center;
@@ -98,10 +96,13 @@ main {
 }
 
 .optionButton {
-  width: 10vh;
-  height: 10vh;
-  position: -webkit-sticky;
   position: sticky;
+  min-height: 100px;
+  height: 10vh;
+}
+
+.optionButton:hover {
+  border: red 2px solid;
 }
 
 .switch {
@@ -158,9 +159,8 @@ input:checked + .slider:before {
 }
 
 .lives {
-  position: -webkit-sticky;
-  min-height: 80px;
   position: sticky;
+  min-height: 80px;
   height: 9vh;
 }
 

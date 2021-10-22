@@ -124,7 +124,7 @@ function initialize() {
     });
     //Affichage de l'oie
     ReactDOM.render(
-        <img id="oie" className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case1")
+        <img id="Oie" className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case1")
     );
 }
 
@@ -185,7 +185,7 @@ function playermovetrue() {
     playerpos += 1;
 
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
+        <img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
 
     ReactDOM.render(
@@ -200,7 +200,7 @@ function playermovefalse() {
     playerpos += 1;
 
     ReactDOM.render(
-        <img className="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
+        <img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
     lastcase += 1;
     lives -= 1;
     checkLives();
@@ -250,7 +250,7 @@ function gameOver() {
 }
 
 function playermovetransition() {
-    // Move
+    $("#Oie").animate({ left: "+=123px" });
 }
 
 //@TODO

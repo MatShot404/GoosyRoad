@@ -37,10 +37,10 @@ main {
 
 @media (max-width: 700px) {
   .table {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
   }
   .casecontent {
-  font-size: 1rem;
+    font-size: 1rem;
   }
   .optionButton {
     max-height: 5vh;
@@ -57,6 +57,7 @@ main {
   position: relative;
   max-height: 70vh;
   width: 100%;
+  transition: left 0.33s ease;
 }
 
 .buttons-container {

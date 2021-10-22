@@ -152,7 +152,6 @@ function butevent() {
 //Gestion des réponses envoyées
 function submitForm(e) {
     e.preventDefault();
-
     //Si le joueur est à la fin du plateau de jeu
     if (playerpos == 12) {
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
@@ -171,11 +170,9 @@ function submitForm(e) {
         //Vérification de la réponse du joueur
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
             //Bonne réponse
-            playerpos += 1;
             playermovetrue();
         } else {
             // Mauvaise réponse
-            playerpos += 1;
             playermovefalse();
         }
     }
@@ -185,6 +182,8 @@ function submitForm(e) {
 function playermovetrue() {
     playSound(goodA);
     questionModal.style.display = "none";
+    playerpos += 1;
+
     ReactDOM.render(
         <img className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
     lastcase += 1;
@@ -198,6 +197,8 @@ function playermovetrue() {
 function playermovefalse() {
     playSound(badA);
     questionModal.style.display = "none";
+    playerpos += 1;
+
     ReactDOM.render(
         <img className="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
     lastcase += 1;
@@ -263,26 +264,6 @@ function reset() {
     location.reload();
 }
 
-
-// function openquestion() {
-//     var answer = prompt("Answer this question");
-//     switch (answer) {
-//         case "1":
-//             alert("Good Job ! :)");
-//             playerpos += 1;
-//             playermovetrue();
-//             break;
-
-//         default:
-//             alert("Wrong");
-//             playerpos += 1;
-//             playermovefalse();
-//             break;
-//     }
-//     console.log(playerpos);
-// }
-
-
 // Modal :
 
 window.onclick = function (event) {
@@ -300,7 +281,6 @@ var lose = document.getElementById("lose");
 var win = document.getElementById("win");
 var good = document.getElementById("goodA");
 var bad = document.getElementById("badA");
-
 
 
 function playSound(sound) {

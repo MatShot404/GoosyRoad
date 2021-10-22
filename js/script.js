@@ -168,19 +168,17 @@ function submitForm(e) {
         }
         questionModal.style.display = "none";
     } else {
+        //Vérification de la réponse du joueur
         if (document.getElementById(listeQuestions[playerpos - 1].reponse).checked == true) {
             //Bonne réponse
-            //console.log("Bonne réponse :)");
             playerpos += 1;
             playermovetrue();
         } else {
             // Mauvaise réponse
-            //console.log("Mauvaise réponse :(");
             playerpos += 1;
             playermovefalse();
         }
     }
-    //Vérification de la réponse du joueur
 }
 
 //Réponse juste :

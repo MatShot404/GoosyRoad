@@ -83,7 +83,8 @@ main {
   aspect-ratio: 1;
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background-color: #d6c043; /* Green */
   border-radius: 45%;
   transition: 100ms;

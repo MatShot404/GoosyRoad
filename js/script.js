@@ -264,8 +264,18 @@ function reset() {
     location.reload();
 }
 
-// Modal :
+//Modal handler
 
+//Show / hide question modal on enter / escape pressed
+$(document).keydown(function (event) {
+    if (event.keyCode == 13) {
+        butevent();
+    } else if (event.keyCode == 27) {
+        questionModal.style.display = "none";
+    }
+});
+
+//Hide modal on click outside of modal
 window.onclick = function (event) {
     if (event.target == questionModal) {
         questionModal.style.display = "none";
@@ -274,8 +284,31 @@ window.onclick = function (event) {
     }
 }
 
-// Sounds
+//select answer on 1/2/3/4 pressed
+$(document).keydown(function (event) {
+    switch (event.keyCode) {
+        case 49:
+            document.getElementById("ans1").focus();
+            document.getElementById("ans1").checked = true;
+            break;
+        case 50:
+            document.getElementById("ans2").focus();
+            document.getElementById("ans2").checked = true;
+            break;
+        case 51:
+            document.getElementById("ans3").focus();
+            document.getElementById("ans3").checked = true;
+            break;
+        case 52:
+            document.getElementById("ans4").focus();
+            document.getElementById("ans4").checked = true;
+            break;
+        default:
+            break;
+    }
+})
 
+// Sounds
 var play = document.getElementById("play");
 var lose = document.getElementById("lose");
 var win = document.getElementById("win");

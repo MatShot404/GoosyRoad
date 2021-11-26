@@ -1,7 +1,6 @@
 const cases = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 var textpos = 1;
 var playerpos = 1;
-var playercase = "case" + playerpos;
 var lastcase = playerpos - 1;
 var lives = 2;
 
@@ -30,7 +29,6 @@ var listeQuestions = [
         "reponse4": "Annuelle",
         "reponse": "ans2"
     },
-
     {
         "question": "Quel acronyme ci-dessous n'est pas en lien avec le Wi-Fi ?",
         "reponse1": "WPA",
@@ -63,7 +61,6 @@ var listeQuestions = [
         "reponse4": "",
         "reponse": "ans2"
     },
-
     {
         "question": "A quoi servent les mises à jours de vos applications ?",
         "reponse1": "A rajouter des bugs dans l'application",
@@ -72,7 +69,6 @@ var listeQuestions = [
         "reponse4": "A améliorer les performances globales de votre machine",
         "reponse": "ans2"
     },
-
     {
         "question": "Quel est le meilleur moyen d'authentification à un appareil mobile ?",
         "reponse1": "Un code à 4 chiffres",
@@ -105,49 +101,56 @@ var listeQuestions = [
         "reponse4": "Éteindre / verrouiller un ordinateur professionnel quand il n'est pas utilisé",
         "reponse": "ans4"
     }
-]
+];
 
 //var listeQuestions = require('../data/listeQuestions.json');
 
 //Initialise le jeu 
-initialize();
+initialize(); //Envoi de la réponse lorsque l'utilisateur submit sa réponse
 
-//Envoi de la réponse lorsque l'utilisateur submit sa réponse
-document.getElementById('questionAnswer').addEventListener('submit', submitForm);
+document.getElementById('questionAnswer').addEventListener('submit', submitForm); //Initialisation du jeu
 
-//Initialisation du jeu
 function initialize() {
     //Chaque case affiche son numéro
-    cases.forEach((element) => {
-        ReactDOM.render(<h1 className="casecontent"> {element} </h1>, document.getElementById("case" + textpos));
+    cases.forEach(element => {
+        ReactDOM.render( /*#__PURE__*/React.createElement("h1", {
+            className: "casecontent"
+        }, " ", element, " "), document.getElementById("case" + textpos));
         textpos += 1;
-    });
-    //Affichage de l'oie
-    ReactDOM.render(
-        <img id="Oie" className="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case1")
-    );
-}
+    }); //Affichage de l'oie
 
-//Ouverture de la modal de question avec contenu en fonction de la position du joueur
+    ReactDOM.render( /*#__PURE__*/React.createElement("img", {
+        id: "Oie",
+        className: "Oie",
+        src: "/img/OIE_1.png",
+        alt: "oie"
+    }), document.getElementById("case1"));
+} //Ouverture de la modal de question avec contenu en fonction de la position du joueur
+
+
 function butevent() {
     playSound(play);
-    ReactDOM.render(
-        <h2 id="question">{listeQuestions[playerpos - 1].question}</h2>, document.getElementById("question")
-    );
-    ReactDOM.render(
-        <label htmlFor="ans1" id="ans1Label">{listeQuestions[playerpos - 1].reponse1}</label>, document.getElementById("ans1Label")
-    );
-    ReactDOM.render(
-        <label htmlFor="ans2" id="ans2Label">{listeQuestions[playerpos - 1].reponse2}</label>, document.getElementById("ans2Label")
-    );
-    ReactDOM.render(
-        <label htmlFor="ans3" id="ans3Label">{listeQuestions[playerpos - 1].reponse3}</label>, document.getElementById("ans3Label")
-    );
-    ReactDOM.render(
-        <label htmlFor="ans4" id="ans4Label">{listeQuestions[playerpos - 1].reponse4}</label>, document.getElementById("ans4Label")
-    )
+    ReactDOM.render( /*#__PURE__*/React.createElement("h2", {
+        id: "question"
+    }, listeQuestions[playerpos - 1].question), document.getElementById("question"));
+    ReactDOM.render( /*#__PURE__*/React.createElement("label", {
+        htmlFor: "ans1",
+        id: "ans1Label"
+    }, listeQuestions[playerpos - 1].reponse1), document.getElementById("ans1Label"));
+    ReactDOM.render( /*#__PURE__*/React.createElement("label", {
+        htmlFor: "ans2",
+        id: "ans2Label"
+    }, listeQuestions[playerpos - 1].reponse2), document.getElementById("ans2Label"));
+    ReactDOM.render( /*#__PURE__*/React.createElement("label", {
+        htmlFor: "ans3",
+        id: "ans3Label"
+    }, listeQuestions[playerpos - 1].reponse3), document.getElementById("ans3Label"));
+    ReactDOM.render( /*#__PURE__*/React.createElement("label", {
+        htmlFor: "ans4",
+        id: "ans4Label"
+    }, listeQuestions[playerpos - 1].reponse4), document.getElementById("ans4Label"));
     questionModal.style.display = "block";
-}
+} 
 
 //Gestion des réponses envoyées
 function submitForm(e) {
@@ -183,13 +186,25 @@ function playermovetrue() {
     playSound(goodA);
     questionModal.style.display = "none";
     playerpos += 1;
-
-    ReactDOM.render(
-        <img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie"></img>, document.getElementById("case" + playerpos));
+    ReactDOM.render( /*#__PURE__*/React.createElement("img", {
+        className: "Oie",
+        id: "Oie",
+        src: "/img/OIE_1.png",
+        alt: "oie"
+    }), document.getElementById("case" + playerpos));
     lastcase += 1;
-
-    ReactDOM.render(
-        <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>, document.getElementById("case" + lastcase));
+    ReactDOM.render( /*#__PURE__*/React.createElement("svg", {
+        class: "w-6 h-6 casecontent",
+        fill: "none",
+        stroke: "currentColor",
+        viewBox: "0 0 24 24",
+        xmlns: "http://www.w3.org/2000/svg"
+    }, /*#__PURE__*/React.createElement("path", {
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "2",
+        d: "M5 13l4 4L19 7"
+    })), document.getElementById("case" + lastcase));
     document.getElementById("case" + lastcase).style.backgroundColor = "rgba(0, 128, 0, 0.6)";
 }
 
@@ -198,15 +213,27 @@ function playermovefalse() {
     playSound(badA);
     questionModal.style.display = "none";
     playerpos += 1;
-
-    ReactDOM.render(
-        <img className="Oie" id="Oie" src="/img/OIE_1.png" alt="oie" />, document.getElementById("case" + playerpos));
+    ReactDOM.render( /*#__PURE__*/React.createElement("img", {
+        className: "Oie",
+        id: "Oie",
+        src: "/img/OIE_1.png",
+        alt: "oie"
+    }), document.getElementById("case" + playerpos));
     lastcase += 1;
     lives -= 1;
     checkLives();
-
-    ReactDOM.render(
-        <svg class="w-6 h-6 casecontent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>, document.getElementById("case" + lastcase));
+    ReactDOM.render( /*#__PURE__*/React.createElement("svg", {
+        class: "w-6 h-6 casecontent",
+        fill: "none",
+        stroke: "currentColor",
+        viewBox: "0 0 24 24",
+        xmlns: "http://www.w3.org/2000/svg"
+    }, /*#__PURE__*/React.createElement("path", {
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "stroke-width": "2",
+        d: "M6 18L18 6M6 6l12 12"
+    })), document.getElementById("case" + lastcase));
     document.getElementById("case" + lastcase).style.backgroundColor = "rgba(128, 0, 0, 0.6)";
 }
 
@@ -214,27 +241,27 @@ function checkLives() {
     if (lives == 2) {
         console.log("2 vies");
     } else if (lives == 1) {
-        ReactDOM.render(
-            <div>
-                <h1 className="livesLabel">Vies :</h1>
-                <img className="lives" id="lives" src="..\img\feather2.png" alt="2 vies" />
-            </div>
-            , document.getElementById("lives")
-        );
+        ReactDOM.render( /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
+            className: "livesLabel"
+        }, "Vies :"), /*#__PURE__*/React.createElement("img", {
+            className: "lives",
+            id: "lives",
+            src: "..\\img\\feather2.png",
+            alt: "2 vies"
+        })), document.getElementById("lives"));
         console.log("1 vie");
     } else if (lives == 0) {
-        ReactDOM.render(
-            <div>
-                <h1 className="livesLabel" >Vies :</h1>
-                <img className="lives" id="lives" src="..\img\feather1.png" alt="1 vie" />
-            </div>
-            , document.getElementById("lives")
-        );
+        ReactDOM.render( /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", {
+            className: "livesLabel"
+        }, "Vies :"), /*#__PURE__*/React.createElement("img", {
+            className: "lives",
+            id: "lives",
+            src: "..\\img\\feather1.png",
+            alt: "1 vie"
+        })), document.getElementById("lives"));
         console.log("0 vie");
     } else if (lives < 0) {
-        ReactDOM.render(
-            <div></div>, document.getElementById("lives")
-        );
+        ReactDOM.render( /*#__PURE__*/React.createElement("div", null), document.getElementById("lives"));
         gameOver();
     }
 }
@@ -250,7 +277,9 @@ function gameOver() {
 }
 
 function playermovetransition() {
-    $("#Oie").animate({ left: "+=123px" });
+    $("#Oie").animate({
+        left: "+=123px"
+    });
 }
 
 //@TODO
@@ -258,7 +287,6 @@ function settings() {
     optionsModal.style.display = "block";
 }
 
-// function popUp() { }
 
 function reset() {
     location.reload();
@@ -282,7 +310,7 @@ window.onclick = function (event) {
     } else if (event.target == optionsModal) {
         optionsModal.style.display = "none";
     }
-}
+};
 
 //select answer on 1/2/3/4 pressed
 $(document).keydown(function (event) {
@@ -306,7 +334,7 @@ $(document).keydown(function (event) {
         default:
             break;
     }
-})
+});
 
 // Sounds
 var play = document.getElementById("play");

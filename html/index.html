@@ -8,18 +8,14 @@
     <script src="../lib/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../data/listeQuestions.json"></script>
     <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
       crossorigin
-      src="https://unpkg.com/react@16/umd/react.development.js"
-      defer
     ></script>
     <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
       crossorigin
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-      defer
     ></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script src="../js/script.js" type="text/babel"></script>
-    <script src="../js/Move.js" type="text/babel"></script>
+    <!-- <scripxt src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
     <title>Goosy Road</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
   </head>
@@ -149,3 +145,25 @@
     <source src="../sounds/badA.wav" type="audio/mpeg" />
   </audio>
 </html>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAGMXAc8aYktHbeBMjQ5eFP20hDVUlw6jk",
+    authDomain: "goosyroad.firebaseapp.com",
+    projectId: "goosyroad",
+    storageBucket: "goosyroad.appspot.com",
+    messagingSenderId: "637731042520",
+    appId: "1:637731042520:web:e9158bc9828ed2f4c193ad",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+<script src="../js/script.js" type="text/javascript"></script>

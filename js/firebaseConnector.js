@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-import { collection, getDocs, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-import { query, orderBy, limit, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// async function getNames(db) {
+// async function getNames(db) {*
 //     const nameCol = collection(db, 'users');
 //     const nameSnapshot = await getDocs(nameCol);
 //     const nameList = nameSnapshot.docs.map(doc => doc.data());
@@ -33,5 +32,22 @@ const db = getFirestore(app);
 
 
 
-export { app, db, collection, getDocs, Timestamp, addDoc };
-export { query, orderBy, limit, where, onSnapshot };
+const auth = getAuth();
+signInAnonymously(auth)
+    .then(() => {
+        console.log("Signed in anonymously");
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+    });
+
+    // Listen for auth state changes
+onAuthStateChanged(auth, (user) => {
+    if (user) { // User is signed in.
+        const userId = user.uid;
+        console.log(userId);
+    } else { // User is signed out.
+        // ...
+    }
+});

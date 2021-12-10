@@ -314,20 +314,20 @@ window.onclick = function (event) {
 
 //select answer on 1/2/3/4 pressed
 $(document).keydown(function (event) {
-    switch (event.keyCode) {
-        case 49:
+    switch (event.code) {
+        case "Digit1":
             document.getElementById("ans1").focus();
             document.getElementById("ans1").checked = true;
             break;
-        case 50:
+        case "Digit2":
             document.getElementById("ans2").focus();
             document.getElementById("ans2").checked = true;
             break;
-        case 51:
+        case "Digit3":
             document.getElementById("ans3").focus();
             document.getElementById("ans3").checked = true;
             break;
-        case 52:
+        case "Digit4":
             document.getElementById("ans4").focus();
             document.getElementById("ans4").checked = true;
             break;

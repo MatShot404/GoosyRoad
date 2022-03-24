@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="..\style\style.css" />
+    <script src="../lib/jquery-3.6.0.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      defer
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      defer
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../js/script.js" type="text/babel"></script>
+    <script src="../js/Move.js" type="text/babel"></script>
+    <title>Goosy Road</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="#settings" onclick="settings();">
+        <img class="optionButton" src="..\img\optionButton.svg" alt="options" />
+      </a>
+      <div id="lives" class="lives">
+        <h1 class="livesLabel">Vies :</h1>
+        <img class="livesImg" src="..\img\feather3.png" alt="vies" />
+      </div>
+    </div>
+
+    <main>
+      <img src="../img/GoosyRoad.png" alt="title" class="gameTitle" />
+      <div class="table" id="table">
+        <div class="case" id="case1"></div>
+        <div class="case" id="case2"></div>
+        <div class="case" id="case3"></div>
+        <div class="case" id="case4"></div>
+        <div class="case" id="case5"></div>
+        <div class="case" id="case6"></div>
+        <div class="case" id="case7"></div>
+        <div class="case" id="case8"></div>
+        <div class="case" id="case9"></div>
+        <div class="case" id="case10"></div>
+        <div class="case" id="case11"></div>
+        <div class="case" id="case12"></div>
+      </div>
+    </main>
+
+    <div class="buttons-container">
+      <button class="button" id="but" onclick="butevent();">Ok</button>
+      <!-- <button class="button" id="but" onclick="reset()">Reset</button> -->
+    </div>
+
+    <div id="questionModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="question">Question</h2>
+        </div>
+        <form id="questionAnswer" action="javascript:void(0);">
+          <div class="modal-body">
+            <div class="answers">
+              <div class="modal-answers">
+                <input type="radio" id="ans1" name="answer" value="1" />
+                <label for="ans1" id="ans1Label">Réponse 1</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans2" name="answer" value="2" />
+                <label for="ans2" id="ans2Label">Réponse 2</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans3" name="answer" value="3" />
+                <label for="ans3" id="ans3Label">Réponse 3</label><br />
+              </div>
+              <div class="modal-answers">
+                <input type="radio" id="ans4" name="answer" value="4" />
+                <label for="ans4" id="ans4Label">Réponse 4</label><br />
+              </div>
+            </div>
+            <button type="submit" class="modal-button">Valider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="optionsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Options</h2>
+        </div>
+        <label class="switch">
+          <input type="checkbox" name="mute" />
+          <span class="slider"></span>
+          <h2>Mute</h2>
+        </label>
+      </div>
+    </div>
+
+    <div id="gameOverModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header-red">
+          <h2>Game Over</h2>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          Vous avez perdu !
+          <br />
+          <button class="retryButton" id="but" onclick="reset()">
+            Recommencer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="winModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Bravo !</h2>
+        </div>
+        <div class="modal-body" style="text-align: center">
+          Vous avez gagné ! Mais vous pouvez réessayer afin de vous améliorer :)
+          <br />
+          <button class="retryButton" id="but" onclick="reset()">
+            Recommencer
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <audio id="play">
+    <source src="../sounds/play2.wav" type="audio/mpeg" />
+  </audio>
+  <audio id="lose">
+    <source src="../sounds/gameOver2.wav" type="audio/mpeg" />
+  </audio>
+  <audio id="win">
+    <source src="../sounds/win.wav" type="audio/mpeg" />
+  </audio>
+  <audio id="goodA">
+    <source src="../sounds/goodA.wav" type="audio/mpeg" />
+  </audio>
+  <audio id="badA">
+    <source src="../sounds/badA.wav" type="audio/mpeg" />
+  </audio>
+</html>

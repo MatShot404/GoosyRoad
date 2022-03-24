@@ -1,15 +1,3 @@
-// Initialize Firebase
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAGMXAc8aYktHbeBMjQ5eFP20hDVUlw6jk",
-    authDomain: "goosyroad.firebaseapp.com",
-    projectId: "goosyroad",
-    storageBucket: "goosyroad.appspot.com",
-    messagingSenderId: "637731042520",
-    appId: "1:637731042520:web:e9158bc9828ed2f4c193ad"
-};
-
-
 firebase.initializeApp(firebaseConfig);
 this.firebaseToken = document.querySelector("#firebase-token");
 this.firebaseToken.innerHTML = "Welcome !";
@@ -22,15 +10,20 @@ function authRegister(event) {
     var reg_email = registerForm.find('#register_email').val();
     var reg_password = registerForm.find('#register_password').val();
 
-    firebase
-        .auth()
-        .createUserWithEmailAndPassword(reg_email, reg_password)
-        .then(function () {
+
+    createUserWithEmailAndPassword(auth, reg_email, reg_password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
             this.firebaseToken.innerHTML = "Registered successfully !";
+            console.log('Registered successfully !');
         })
-        .catch(function (err) {
-            alert(err.message);
-        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            // ..
+        });
 }
 
 
@@ -57,3 +50,14 @@ function authLogin(event) {
 function outputFirebaseData() {
     this.firebaseToken.innerHTML = "Hello world";
 }
+
+// async function getNames(db) {
+//     const nameCol = collection(db, 'users');
+//     const nameSnapshot = await getDocs(nameCol);
+//     const nameList = nameSnapshot.docs.map(doc => doc.data());
+//     return nameList;
+// }
+
+// getNames(db).then(nameList => {
+//     console.log(nameList);
+// });

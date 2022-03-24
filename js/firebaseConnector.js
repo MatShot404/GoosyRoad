@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"
-import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-auth.js";
+import { initializeApp, _getProvider, _registerComponent} from '../node_modules/firebase/app';
+import { getDocs, getFirestore, collection } from 'firebase/firestore';
+import { getAuth, signInAnonymously, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,38 +17,42 @@ const firebaseConfig = {
     appId: "1:637731042520:web:e9158bc9828ed2f4c193ad"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-// async function getNames(db) {*
-//     const nameCol = collection(db, 'users');
-//     const nameSnapshot = await getDocs(nameCol);
-//     const nameList = nameSnapshot.docs.map(doc => doc.data());
-//     return nameList;
-// }
-
-// getNames(db).then(nameList => {
-//     console.log(nameList);
-// });
+const auth = getAuth(app);
 
 
 
-const auth = getAuth();
-signInAnonymously(auth)
-    .then(() => {
-        console.log("Signed in anonymously");
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
+async function getNames(db) {
+    const nameCol = collection(db, 'users');
+    const nameSnapshot = await getDocs(nameCol);
+    const nameList = nameSnapshot.docs.map(doc => doc.data());
+    return nameList;
+}
 
-    // Listen for auth state changes
-onAuthStateChanged(auth, (user) => {
-    if (user) { // User is signed in.
-        const userId = user.uid;
-        console.log(userId);
-    } else { // User is signed out.
-        // ...
-    }
+getNames(db).then(nameList => {
+    console.log(nameList);
 });
+
+
+
+// const auth = getAuth();
+// signInAnonymously(auth)
+//     .then(() => {
+//         console.log("Signed in anonymously");
+//     })
+//     .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//     });
+
+//     // Listen for auth state changes
+// onAuthStateChanged(auth, (user) => {
+//     if (user) { // User is signed in.
+//         const userId = user.uid;
+//         console.log(userId);
+//     } else { // User is signed out.
+//         // ...
+//     }
+// });
